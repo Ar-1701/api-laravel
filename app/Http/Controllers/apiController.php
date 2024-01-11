@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class apiController extends Controller
 {
@@ -55,7 +58,16 @@ class apiController extends Controller
     }
     public function add_stu(Request $req)
     {
+        $validator = Validator::make($req->all(), [
+            'name' => 'required',
+            'age' => 'required|numeric',
+            'city' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()]);
+        }
         $id = $req->id;
+        // echo $errors->first('email');
         $check = Student::find($id);
         if (isset($check)) {
             $check->name = $req->name;
@@ -90,7 +102,7 @@ class apiController extends Controller
                 return response()->json(['status' => 404, 'message' => 'Student Data Not Existed']);
             }
         } else {
-            return response()->json(['status' => 500]);
+            return response()->json(['status' => 500, 'message' => 'Model Name Not Existed']);
         }
     }
 }
