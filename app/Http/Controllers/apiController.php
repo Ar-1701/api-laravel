@@ -60,7 +60,7 @@ class apiController extends Controller
     {
         $validator = Validator::make($req->all(), [
             'name' => 'required',
-            'age' => 'required|numeric',
+            'age' => 'required|numeric|between:18,24',
             'city' => 'required'
         ]);
         if ($validator->fails()) {
