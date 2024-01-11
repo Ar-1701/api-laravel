@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 namespace App\Http\Controllers;
@@ -96,4 +94,3 @@ class apiController extends Controller
         }
     }
 }
->>>>>>> 97d2c26 (update)
