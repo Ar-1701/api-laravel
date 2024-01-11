@@ -67,7 +67,6 @@ class apiController extends Controller
             return response()->json(['error' => $validator->errors()]);
         }
         $id = $req->id;
-        // echo $errors->first('email');
         $check = Student::find($id);
         if (isset($check)) {
             $check->name = $req->name;
